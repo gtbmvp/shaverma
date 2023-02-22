@@ -1,4 +1,5 @@
 export interface IShaverma {
+  id: number;
   title: string;
   ingredients: Array<string>;
   energy: number;
