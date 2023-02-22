@@ -1,14 +1,25 @@
+import { useState } from "react";
 import styles from "./categories.module.scss";
 
+const categories = ["Все", "Курица", "Говядина", "Баранина", "Фалафель"];
+
 const Filter: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className={styles.categories}>
       <ul>
-        <li className={styles.active}>Все</li>
-        <li>Курица</li>
-        <li>Говядина</li>
-        <li>Баранина</li>
-        <li>Фалафель</li>
+        {categories.map((cat, index) => {
+          return (
+            <li
+              key={cat}
+              className={index === activeIndex ? styles.active : ""}
+              onClick={() => setActiveIndex(index)}
+            >
+              {cat}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

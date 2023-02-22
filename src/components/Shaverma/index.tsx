@@ -1,15 +1,6 @@
 import styles from "./shaverma.module.scss";
 
-interface IShaverma {
-  title: string;
-  ingredients: Array<string>;
-  energy: number;
-  protein: number;
-  fats: number;
-  carbohydrates: number;
-  price: number;
-  photo: string;
-}
+import { IShaverma } from "../../types";
 
 const Shaverma: React.FC<IShaverma> = ({
   title,
@@ -23,11 +14,7 @@ const Shaverma: React.FC<IShaverma> = ({
 }) => {
   return (
     <div className={styles.item}>
-      <img
-        className={styles.image}
-        src={require(`../../data/img/${photo}`)}
-        alt="Shaverma"
-      />
+      <img className={styles.image} src={`img/${photo}`} alt="Shaverma" />
       <h4 className={styles.title}>{title}</h4>
 
       <div className={styles.content}>

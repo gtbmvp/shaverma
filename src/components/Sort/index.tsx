@@ -1,6 +1,18 @@
+import { useState } from "react";
+
 import styles from "./sort.module.scss";
 
+const sortings = ["популярности", "цене", "ккал"];
+
 const Sort: React.FC = () => {
+  const [open, setOpen] = useState(false);
+  const [selectedSorting, setSelectedSorting] = useState(0);
+
+  const handleSortSelectClick = (sorting: number) => {
+    setSelectedSorting(sorting);
+    setOpen(false);
+  };
+
   return (
     <div className={styles.sort}>
       <div className={styles.label}>
@@ -10,6 +22,7 @@ const Sort: React.FC = () => {
           viewBox="0 0 10 6"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          transform={!open ? "scale(1 -1)" : ""}
         >
           <path
             d="M10 5C10 5.16927 9.93815 5.31576 9.81445 5.43945C9.69075 5.56315 9.54427 5.625 9.375 5.625H0.625C0.455729 5.625 0.309245 5.56315 0.185547 5.43945C0.061849 5.31576 0 5.16927 0 5C0 4.83073 0.061849 4.68424 0.185547 4.56055L4.56055 0.185547C4.68424 0.061849 4.83073 0 5 0C5.16927 0 5.31576 0.061849 5.43945 0.185547L9.81445 4.56055C9.93815 4.68424 10 4.83073 10 5Z"
@@ -17,15 +30,25 @@ const Sort: React.FC = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setOpen((prev) => !prev)}>
+          {sortings[selectedSorting]}
+        </span>
       </div>
-      <div className={styles.popup}>
-        <ul>
-          <li className={styles.active}>популярности</li>
-          <li>цене</li>
-          <li>ккал</li>
-        </ul>
-      </div>
+      {open && (
+        <div className={styles.popup}>
+          <ul>
+            {sortings.map((sorting, index) => (
+              <li
+                key={sorting}
+                className={index === selectedSorting ? styles.active : ""}
+                onClick={() => handleSortSelectClick(index)}
+              >
+                {sorting}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
