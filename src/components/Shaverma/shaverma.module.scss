@@ -1,20 +1,60 @@
-@import "../partial/variables";
+@import "../../variables";
 
 .item {
   width: 280px;
   text-align: center;
   margin-bottom: 65px;
-
-  &:not(:nth-of-type(4n)) {
-    margin-right: 35px;
-  }
 }
 
-.image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.imageBox {
+  position: relative;
   margin-bottom: 10px;
+
+  .inCartIcon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  .badge {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 200px;
+    position: absolute;
+    color: white;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s;
+    z-index: 1;
+  }
+
+  .image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: all 0.5s;
+    filter: brightness(100%);
+  }
+
+  &:hover {
+    .info {
+      opacity: 1;
+    }
+
+    .image {
+      filter: brightness(30%);
+    }
+  }
 }
 
 .title {
