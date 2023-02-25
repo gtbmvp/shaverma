@@ -1,21 +1,25 @@
-import { useState } from "react";
 import styles from "./categories.module.scss";
 
-const categories = ["Все", "Курица", "Говядина", "Баранина", "Фалафель"];
+import { CategoriesType } from "../../types";
 
-const Filter: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const categories = ["все", "курица", "говядина", "баранина", "фалафель"];
 
+interface IFilter {
+  value: CategoriesType;
+  handleFilterChange: (cat: CategoriesType) => void;
+}
+
+const Filter: React.FC<IFilter> = ({ value, handleFilterChange }) => {
   return (
     <ul className={styles.categories}>
-      {categories.map((cat, index) => {
+      {categories.map((cat) => {
         return (
           <li
             key={cat}
-            className={index === activeIndex ? styles.active : ""}
-            onClick={() => setActiveIndex(index)}
+            className={cat === value ? styles.active : ""}
+            onClick={() => handleFilterChange(cat as CategoriesType)}
           >
-            {cat}
+            {cat[0].toUpperCase() + cat.slice(1)}
           </li>
         );
       })}

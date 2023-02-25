@@ -1,15 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import styles from "./sort.module.scss";
 
-const sortings = ["популярности", "цене", "ккал"];
+import { SortType } from "../../types";
 
-const Sort: React.FC = () => {
+const sortings = {
+  rating: "популярности",
+  price: "цене",
+  energy: "ккал",
+};
+
+interface ISort {
+  value: SortType;
+  handleSortChange: (sort: SortType) => void;
+}
+
+const Sort: React.FC<ISort> = ({ value, handleSortChange }) => {
   const [open, setOpen] = useState(false);
-  const [selectedSorting, setSelectedSorting] = useState(0);
 
-  const handleSortSelectClick = (sorting: number) => {
-    setSelectedSorting(sorting);
+  const popup = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler: EventListener = (event) => {
+      if (!(event.target instanceof Element)) return;
+
+      if (popup.current && !popup.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handler, true);
+
+    return () => {
+      document.removeEventListener("click", handler);
+    };
+  }, []);
+
+  const handleSortSelectClick = (sort: SortType) => {
+    handleSortChange(sort);
     setOpen(false);
   };
 
@@ -30,20 +58,18 @@ const Sort: React.FC = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen((prev) => !prev)}>
-          {sortings[selectedSorting]}
-        </span>
+        <span onClick={() => setOpen((prev) => !prev)}>{sortings[value]}</span>
       </div>
       {open && (
-        <div className={styles.popup}>
+        <div ref={popup} className={styles.popup}>
           <ul>
-            {sortings.map((sorting, index) => (
+            {Object.entries(sortings).map(([field, value]) => (
               <li
-                key={sorting}
-                className={index === selectedSorting ? styles.active : ""}
-                onClick={() => handleSortSelectClick(index)}
+                key={field}
+                className={field === value ? styles.active : ""}
+                onClick={() => handleSortSelectClick(field as SortType)}
               >
-                {sorting}
+                {value}
               </li>
             ))}
           </ul>

@@ -1,6 +1,7 @@
 export interface IShaverma {
   id: number;
   title: string;
+  category: string;
   ingredients: Array<string>;
   energy: number;
   protein: number;
@@ -9,3 +10,11 @@ export interface IShaverma {
   price: number;
   photo: string;
 }
+
+export type SortType = "rating" | "price" | "energy";
+export type CategoriesType =
+  | "все"
+  | "курица"
+  | "говядина"
+  | "баранина"
+  | "фалафель";

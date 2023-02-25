@@ -2,6 +2,7 @@
   {
     "id": 1,
     "title": "Фалафель",
+    "category": "фалафель",
     "ingredients": [
       "фалафель",
       "салат",
@@ -15,11 +16,13 @@
     "fats": 14,
     "carbohydrates": 80,
     "price": 280,
-    "photo": "falafel.jpg"
+    "photo": "falafel.jpg",
+    "rating": 10
   },
   {
     "id": 2,
     "title": "Иорданская",
+    "category": "говядина",
     "ingredients": [
       "рубленая говядина",
       "соус сладкий чили",
@@ -34,11 +37,13 @@
     "fats": 80,
     "carbohydrates": 60,
     "price": 370,
-    "photo": "iordan.jpg"
+    "photo": "iordan.jpg",
+    "rating": 100
   },
   {
     "id": 3,
     "title": "Марокканская",
+    "category": "курица",
     "ingredients": [
       "куриная грудка",
       "соус терияки",
@@ -54,11 +59,13 @@
     "fats": 3,
     "carbohydrates": 17,
     "price": 250,
-    "photo": "marok.jpg"
+    "photo": "marok.jpg",
+    "rating": 15
   },
   {
     "id": 4,
     "title": "Дурум кебаб",
+    "category": "баранина",
     "ingredients": [
       "баранина",
       "лук красный",
@@ -72,11 +79,13 @@
     "fats": 36,
     "carbohydrates": 61,
     "price": 330,
-    "photo": "durum.jpg"
+    "photo": "durum.jpg",
+    "rating": 20
   },
   {
     "id": 5,
     "title": "Алжирская",
+    "category": "курица",
     "ingredients": [
       "куриная грудка",
       "луковые кольца",
@@ -92,11 +101,13 @@
     "fats": 15,
     "carbohydrates": 16,
     "price": 310,
-    "photo": "algir.jpg"
+    "photo": "algir.jpg",
+    "rating": 90
   },
   {
     "id": 6,
     "title": "Турецкая",
+    "category": "говядина",
     "ingredients": [
       "рубленая говядина",
       "ягненок",
@@ -112,11 +123,13 @@
     "fats": 79,
     "carbohydrates": 54,
     "price": 350,
-    "photo": "turkey.jpg"
+    "photo": "turkey.jpg",
+    "rating": 50
   },
   {
     "id": 7,
     "title": "Ливанская",
+    "category": "баранина",
     "ingredients": [
       "ягненок",
       "салат",
@@ -132,11 +145,13 @@
     "fats": 52,
     "carbohydrates": 62,
     "price": 320,
-    "photo": "livan.jpg"
+    "photo": "livan.jpg",
+    "rating": 20
   },
   {
     "id": 8,
     "title": "Сирийская",
+    "category": "говядина",
     "ingredients": [
       "рубленая говядина",
       "гурийская капуста",
@@ -150,11 +165,13 @@
     "fats": 17,
     "carbohydrates": 14,
     "price": 320,
-    "photo": "siria.jpg"
+    "photo": "siria.jpg",
+    "rating": 80
   },
   {
     "id": 9,
     "title": "Иранская",
+    "category": "курица",
     "ingredients": [
       "куриное бедро",
       "листья салата",
@@ -168,6 +185,7 @@
     "fats": 12,
     "carbohydrates": 13,
     "price": 280,
-    "photo": "iran.jpg"
+    "photo": "iran.jpg",
+    "rating": 65
   }
 ]
