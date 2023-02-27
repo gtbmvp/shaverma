@@ -9,6 +9,7 @@ export interface IShaverma {
   carbohydrates: number;
   price: number;
   photo: string;
+  rating: number;
 }
 
 export type SortType = "rating" | "price" | "energy";
