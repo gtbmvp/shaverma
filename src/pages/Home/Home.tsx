@@ -1,21 +1,25 @@
 import { useCallback, useMemo, useEffect, useState } from "react";
 
+import type { RootState } from "../../store";
+import { useSelector } from "react-redux";
+
 import Filter from "../../components/Filter";
 import Shaverma from "../../components/Shaverma";
 import ShavermaSkeleton from "../../components/Shaverma/ShavermaSkeleton";
 import Sort from "../../components/Sort";
 import Search from "../../components/Search";
 
-import { IShaverma, SortType, CategoriesType } from "../../types";
+import { IShaverma } from "../../types";
 
 import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
   const [shavermas, setShavermas] = useState<IShaverma[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [filter, setFilter] = useState<CategoriesType>("все");
-  const [sorting, setSorting] = useState<SortType>("rating");
-  const [search, setSearch] = useState("");
+
+  const { filterBy, sorting, search } = useSelector(
+    (state: RootState) => state.filter
+  );
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
@@ -42,7 +46,7 @@ const Home: React.FC = () => {
   );
 
   const filteredShavermas = sortedShavermas
-    .filter((item) => (filter !== "все" ? item.category === filter : true))
+    .filter((item) => (filterBy !== "все" ? item.category === filterBy : true))
     .filter(
       (item) =>
         item.title.toLowerCase().includes(search) ||
@@ -54,9 +58,9 @@ const Home: React.FC = () => {
     <main>
       <div className="container">
         <div className={styles.top}>
-          <Filter value={filter} handleFilterChange={setFilter} />
-          <Search value={search} handleSearchChange={setSearch} />
-          <Sort value={sorting} handleSortChange={setSorting} />
+          <Filter />
+          <Search />
+          <Sort />
         </div>
         <div className={styles.items}>
           {isLoading ? (

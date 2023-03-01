@@ -1,3 +1,7 @@
+import type { RootState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { setSearch } from "../../store/slices/filterSlice";
+
 import { useState } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
@@ -5,16 +9,13 @@ import TextField from "@mui/material/TextField";
 
 import styles from "./search.module.scss";
 
-interface ISearch {
-  value: string;
-  handleSearchChange: (search: string) => void;
-}
-
-const Search: React.FC<ISearch> = ({ value, handleSearchChange }) => {
+const Search: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const search = useSelector((state: RootState) => state.filter.search);
+  const dispatch = useDispatch();
 
   const handleBlur = () => {
-    if (value === "") {
+    if (search === "") {
       setIsOpen(false);
     }
   };
@@ -29,8 +30,8 @@ const Search: React.FC<ISearch> = ({ value, handleSearchChange }) => {
       )}
       {isOpen && (
         <TextField
-          value={value}
-          onChange={(e) => handleSearchChange(e.target.value.toLowerCase())}
+          value={search}
+          onChange={(e) => dispatch(setSearch(e.target.value.toLowerCase()))}
           onBlur={handleBlur}
           variant="standard"
           sx={{

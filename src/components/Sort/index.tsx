@@ -1,3 +1,7 @@
+import type { RootState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { changeSorting } from "../../store/slices/filterSlice";
+
 import { useState, useEffect, useRef } from "react";
 
 import styles from "./sort.module.scss";
@@ -10,13 +14,11 @@ const sortings = {
   energy: "ккал",
 };
 
-interface ISort {
-  value: SortType;
-  handleSortChange: (sort: SortType) => void;
-}
-
-const Sort: React.FC<ISort> = ({ value, handleSortChange }) => {
+const Sort: React.FC = () => {
   const [open, setOpen] = useState(false);
+
+  const sorting = useSelector((state: RootState) => state.filter.sorting);
+  const dispatch = useDispatch();
 
   const popup = useRef<HTMLDivElement>(null);
 
@@ -37,7 +39,7 @@ const Sort: React.FC<ISort> = ({ value, handleSortChange }) => {
   }, []);
 
   const handleSortSelectClick = (sort: SortType) => {
-    handleSortChange(sort);
+    dispatch(changeSorting(sort));
     setOpen(false);
   };
 
@@ -58,7 +60,9 @@ const Sort: React.FC<ISort> = ({ value, handleSortChange }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen((prev) => !prev)}>{sortings[value]}</span>
+        <span onClick={() => setOpen((prev) => !prev)}>
+          {sortings[sorting]}
+        </span>
       </div>
       {open && (
         <div ref={popup} className={styles.popup}>
@@ -66,7 +70,7 @@ const Sort: React.FC<ISort> = ({ value, handleSortChange }) => {
             {Object.entries(sortings).map(([field, value]) => (
               <li
                 key={field}
-                className={field === value ? styles.active : ""}
+                className={field === sorting ? styles.active : ""}
                 onClick={() => handleSortSelectClick(field as SortType)}
               >
                 {value}
