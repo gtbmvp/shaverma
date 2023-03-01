@@ -20,16 +20,19 @@ const Search: React.FC = () => {
     }
   };
 
+  const handleIconClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
-    <>
-      {!isOpen && (
-        <SearchIcon
-          className={styles.icon}
-          onClick={() => setIsOpen((prev) => !prev)}
-        />
-      )}
+    <div
+      className={isOpen ? `${styles.box} ${styles["box--active"]}` : styles.box}
+    >
+      <SearchIcon className={styles.icon} onClick={handleIconClick} />
+
       {isOpen && (
         <TextField
+          inputRef={(input) => input?.focus()}
           value={search}
           onChange={(e) => dispatch(setSearch(e.target.value.toLowerCase()))}
           onBlur={handleBlur}
@@ -41,7 +44,7 @@ const Search: React.FC = () => {
           }}
         />
       )}
-    </>
+    </div>
   );
 };
 

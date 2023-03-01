@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useEffect, useState } from "react";
+import axios from "axios";
 
 import type { RootState } from "../../store";
 import { useSelector } from "react-redux";
@@ -24,10 +25,9 @@ const Home: React.FC = () => {
   const fetchData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
+      const { data } = await axios.get(
         "https://6321dfda82f8687273bb7341.mockapi.io/shavermas"
       );
-      const data = await response.json();
       setShavermas(data);
       setIsLoading(false);
     } catch (error) {
