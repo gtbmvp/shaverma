@@ -1,4 +1,6 @@
-import styles from "./shaverma.module.scss";
+import type { RootState } from "../../store";
+import { useSelector, useDispatch } from "react-redux";
+import { add, remove } from "../../store/slices/cartSlice";
 
 import { orange, blueGrey } from "@mui/material/colors";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -8,26 +10,40 @@ import Button from "@mui/material/Button";
 
 import { IShaverma } from "../../types";
 
-const Shaverma: React.FC<IShaverma> = ({
-  title,
-  ingredients,
-  energy,
-  protein,
-  fats,
-  carbohydrates,
-  price,
-  photo,
-}) => {
+import styles from "./shaverma.module.scss";
+
+const Shaverma: React.FC<IShaverma> = (item) => {
+  const {
+    id,
+    title,
+    ingredients,
+    energy,
+    protein,
+    fats,
+    carbohydrates,
+    price,
+    photo,
+  } = item;
+  const cart = useSelector((state: RootState) => state.cart.items);
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.item}>
       <div className={styles.imageBox}>
         <DoneIcon
           className={styles.inCartIcon}
           sx={{ color: orange[900], fontSize: 54 }}
+          visibility={
+            cart.some((item) => item.id === id) ? "visible" : "hidden"
+          }
         />
         <Badge
           className={styles.badge}
-          badgeContent={4}
+          badgeContent={
+            cart.filter((item) => {
+              return item.id === id;
+            }).length
+          }
           color="primary"
           sx={{
             "& .MuiBadge-badge": {
@@ -63,6 +79,7 @@ const Shaverma: React.FC<IShaverma> = ({
             },
           }}
           startIcon={<AddShoppingCartIcon />}
+          onClick={() => dispatch(add(item))}
         >
           Добавить
         </Button>
