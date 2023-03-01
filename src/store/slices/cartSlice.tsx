@@ -3,8 +3,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { IShaverma } from "../../types";
 
-export interface ICartState {
-  items: Array<IShaverma>;
+interface ICartState {
+  items: Array<Array<IShaverma>>;
 }
 
 const initialState: ICartState = {
@@ -16,10 +16,19 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     add: (state, action: PayloadAction<IShaverma>) => {
-      state.items.push(action.payload);
+      const { id } = action.payload;
+      if (state.items[id] === undefined) {
+        state.items[id] = Array(action.payload);
+      } else {
+        state.items[id].push(action.payload);
+      }
     },
     remove: (state, action: PayloadAction<number>) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      const id = action.payload;
+      for (let i = 0; i < state.items[id]?.length; i++) {
+        state.items[id].splice(i, 1);
+        break;
+      }
     },
     clearCart: (state) => {
       state.items = [];

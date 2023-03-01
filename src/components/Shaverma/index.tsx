@@ -5,6 +5,8 @@ import { add, remove } from "../../store/slices/cartSlice";
 import { orange, blueGrey } from "@mui/material/colors";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import DoneIcon from "@mui/icons-material/Done";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Badge from "@mui/material/Badge";
 import Button from "@mui/material/Button";
 
@@ -24,26 +26,22 @@ const Shaverma: React.FC<IShaverma> = (item) => {
     price,
     photo,
   } = item;
-  const cart = useSelector((state: RootState) => state.cart.items);
+  const cart = useSelector((state: RootState) => state.cart.items[id]);
   const dispatch = useDispatch();
 
   return (
     <div className={styles.item}>
       <div className={styles.imageBox}>
-        <DoneIcon
-          className={styles.inCartIcon}
-          sx={{ color: orange[900], fontSize: 54 }}
-          visibility={
-            cart.some((item) => item.id === id) ? "visible" : "hidden"
-          }
-        />
+        {cart?.length > 0 && (
+          <DoneIcon
+            className={styles.inCartIcon}
+            sx={{ color: orange[900], fontSize: 54 }}
+          />
+        )}
+
         <Badge
           className={styles.badge}
-          badgeContent={
-            cart.filter((item) => {
-              return item.id === id;
-            }).length
-          }
+          badgeContent={cart?.length}
           color="primary"
           sx={{
             "& .MuiBadge-badge": {
@@ -69,20 +67,31 @@ const Shaverma: React.FC<IShaverma> = (item) => {
 
       <div className={styles.content}>
         <div className={styles.price}>{price} ₽</div>
-        <Button
-          variant="text"
-          sx={{
-            color: orange[900],
-            borderRadius: 25,
-            ":hover": {
-              backgroundColor: blueGrey[50],
-            },
-          }}
-          startIcon={<AddShoppingCartIcon />}
-          onClick={() => dispatch(add(item))}
-        >
-          Добавить
-        </Button>
+        {cart?.length > 0 ? (
+          <div className={styles.buttons}>
+            <AddCircleOutlineIcon
+              sx={{ color: orange[900] }}
+              fontSize="large"
+              onClick={() => dispatch(add(item))}
+            />
+            <RemoveCircleOutlineIcon onClick={() => dispatch(remove(id))} />
+          </div>
+        ) : (
+          <Button
+            variant="text"
+            sx={{
+              color: orange[900],
+              borderRadius: 25,
+              ":hover": {
+                backgroundColor: blueGrey[50],
+              },
+            }}
+            startIcon={<AddShoppingCartIcon />}
+            onClick={() => dispatch(add(item))}
+          >
+            Добавить
+          </Button>
+        )}
       </div>
     </div>
   );

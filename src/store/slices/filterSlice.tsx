@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { SortType, CategoriesType } from "../../types";
 
-export interface IFilterState {
+interface IFilterState {
   filterBy: CategoriesType;
   sorting: SortType;
   search: string;

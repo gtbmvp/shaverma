@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "title": "Фалафель",
     "category": "фалафель",
     "ingredients": [
@@ -20,7 +20,7 @@
     "rating": 10
   },
   {
-    "id": 2,
+    "id": 1,
     "title": "Иорданская",
     "category": "говядина",
     "ingredients": [
@@ -41,7 +41,7 @@
     "rating": 100
   },
   {
-    "id": 3,
+    "id": 2,
     "title": "Марокканская",
     "category": "курица",
     "ingredients": [
@@ -63,7 +63,7 @@
     "rating": 15
   },
   {
-    "id": 4,
+    "id": 3,
     "title": "Дурум кебаб",
     "category": "баранина",
     "ingredients": [
@@ -83,7 +83,7 @@
     "rating": 20
   },
   {
-    "id": 5,
+    "id": 4,
     "title": "Алжирская",
     "category": "курица",
     "ingredients": [
@@ -105,7 +105,7 @@
     "rating": 90
   },
   {
-    "id": 6,
+    "id": 5,
     "title": "Турецкая",
     "category": "говядина",
     "ingredients": [
@@ -127,7 +127,7 @@
     "rating": 50
   },
   {
-    "id": 7,
+    "id": 6,
     "title": "Ливанская",
     "category": "баранина",
     "ingredients": [
@@ -149,7 +149,7 @@
     "rating": 20
   },
   {
-    "id": 8,
+    "id": 7,
     "title": "Сирийская",
     "category": "говядина",
     "ingredients": [
@@ -169,7 +169,7 @@
     "rating": 80
   },
   {
-    "id": 9,
+    "id": 8,
     "title": "Иранская",
     "category": "курица",
     "ingredients": [

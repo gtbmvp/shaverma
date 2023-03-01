@@ -1,14 +1,17 @@
 @import "../../variables";
 
 .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 280px;
+  height: 280px;
   text-align: center;
   margin-bottom: 65px;
 }
 
 .imageBox {
   position: relative;
-  margin-bottom: 10px;
 
   .inCartIcon {
     position: absolute;
@@ -61,13 +64,13 @@
   font-size: 20px;
   font-weight: 900;
   letter-spacing: 1%;
-  margin-bottom: 10px;
 }
 
 .content {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 40px;
 }
 
 .price {
@@ -75,4 +78,22 @@
   font-size: 22px;
   line-height: 27px;
   letter-spacing: 0.015em;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+
+  svg {
+    cursor: pointer;
+    transition: all 0.1s ease;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
