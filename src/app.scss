@@ -11,6 +11,10 @@ body {
   background-color: #fff;
   margin: 50px auto;
   border-radius: 10px;
+
+  @media (max-width: 480px) {
+    width: calc(100vw - 30px);
+  }
 }
 
 .container {

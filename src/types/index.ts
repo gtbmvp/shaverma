@@ -12,6 +12,14 @@ export interface IShaverma {
   rating: number;
 }
 
+export interface ICartShaverma {
+  id: number;
+  title: string;
+  price: number;
+  photo: string;
+  count: number;
+}
+
 export type SortType = "rating" | "price" | "energy";
 export type CategoriesType =
   | "все"

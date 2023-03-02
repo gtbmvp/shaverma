@@ -1,0 +1,51 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .image {
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      transition: transform 0.6s;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .title {
+    width: 120px;
+  }
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95px;
+
+  span {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  svg {
+    cursor: pointer;
+  }
+}
+
+.price {
+  width: 95px;
+  font-size: 24px;
+  font-weight: 900;
+}

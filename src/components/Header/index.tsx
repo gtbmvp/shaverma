@@ -1,3 +1,6 @@
+import type { RootState } from "../../store";
+import { useSelector } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 import { orange } from "@mui/material/colors";
@@ -9,6 +12,10 @@ import styles from "./header.module.scss";
 import logo from "../../assets/img/logo.png";
 
 const Header: React.FC = () => {
+  const { totalPrice, totalCount } = useSelector(
+    (state: RootState) => state.cart
+  );
+
   return (
     <header className={styles.header}>
       <div className={`${styles.container} container`}>
@@ -26,7 +33,7 @@ const Header: React.FC = () => {
           </div>
         </Link>
 
-        <Link to="/cart" className={styles.cart}>
+        {totalCount <= 0 ? (
           <Button
             variant="contained"
             sx={{
@@ -40,7 +47,24 @@ const Header: React.FC = () => {
           >
             <ShoppingCartIcon fontSize="small" />
           </Button>
-        </Link>
+        ) : (
+          <Link to="/cart" className={styles.cart}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: orange[900],
+                borderRadius: 25,
+                ":hover": {
+                  bgcolor: orange[800],
+                },
+              }}
+            >
+              <span>{totalCount}</span>
+              <ShoppingCartIcon fontSize="small" />
+              <span>{totalPrice} ₽</span>
+            </Button>
+          </Link>
+        )}
       </div>
     </header>
   );

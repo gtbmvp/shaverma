@@ -2,7 +2,8 @@ import { useCallback, useMemo, useEffect, useState } from "react";
 import axios from "axios";
 
 import type { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { reset } from "../../store/slices/filterSlice";
 
 import Filter from "../../components/Filter";
 import Shaverma from "../../components/Shaverma";
@@ -15,6 +16,7 @@ import { IShaverma } from "../../types";
 import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
+  const dispatch = useDispatch();
   const [shavermas, setShavermas] = useState<IShaverma[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -39,6 +41,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+
+  useEffect(() => {
+    dispatch(reset());
+  }, [dispatch]);
 
   const sortedShavermas = useMemo(
     () => shavermas.sort((a, b) => b[sorting] - a[sorting]),

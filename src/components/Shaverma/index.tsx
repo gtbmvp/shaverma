@@ -26,13 +26,19 @@ const Shaverma: React.FC<IShaverma> = (item) => {
     price,
     photo,
   } = item;
-  const cart = useSelector((state: RootState) => state.cart.items[id]);
+
+  const cart = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
+
+  const handleAddClick = () => {
+    const newItem = { id, title, price, photo, count: 1 };
+    dispatch(add(newItem));
+  };
 
   return (
     <div className={styles.item}>
       <div className={styles.imageBox}>
-        {cart?.length > 0 && (
+        {cart[id]?.count > 0 && (
           <DoneIcon
             className={styles.inCartIcon}
             sx={{ color: orange[900], fontSize: 54 }}
@@ -41,7 +47,7 @@ const Shaverma: React.FC<IShaverma> = (item) => {
 
         <Badge
           className={styles.badge}
-          badgeContent={cart?.length}
+          badgeContent={cart[id]?.count}
           color="primary"
           sx={{
             "& .MuiBadge-badge": {
@@ -67,12 +73,12 @@ const Shaverma: React.FC<IShaverma> = (item) => {
 
       <div className={styles.content}>
         <div className={styles.price}>{price} ₽</div>
-        {cart?.length > 0 ? (
+        {cart[id]?.count > 0 ? (
           <div className={styles.buttons}>
             <AddCircleOutlineIcon
               sx={{ color: orange[900] }}
               fontSize="large"
-              onClick={() => dispatch(add(item))}
+              onClick={handleAddClick}
             />
             <RemoveCircleOutlineIcon onClick={() => dispatch(remove(id))} />
           </div>
@@ -87,7 +93,7 @@ const Shaverma: React.FC<IShaverma> = (item) => {
               },
             }}
             startIcon={<AddShoppingCartIcon />}
-            onClick={() => dispatch(add(item))}
+            onClick={handleAddClick}
           >
             Добавить
           </Button>

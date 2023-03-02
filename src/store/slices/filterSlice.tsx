@@ -28,9 +28,15 @@ export const filterSlice = createSlice({
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
+    reset: (state) => {
+      state.filterBy = "все";
+      state.sorting = "rating";
+      state.search = "";
+    },
   },
 });
 
-export const { changeFilter, changeSorting, setSearch } = filterSlice.actions;
+export const { changeFilter, changeSorting, setSearch, reset } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;
