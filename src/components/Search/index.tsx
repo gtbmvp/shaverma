@@ -1,5 +1,4 @@
-import type { RootState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setSearch } from "../../store/slices/filterSlice";
 
 import { useState } from "react";
@@ -11,8 +10,8 @@ import styles from "./search.module.scss";
 
 const Search: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const search = useSelector((state: RootState) => state.filter.search);
-  const dispatch = useDispatch();
+  const search = useAppSelector((state) => state.filter.search);
+  const dispatch = useAppDispatch();
 
   const handleBlur = () => {
     if (search === "") {

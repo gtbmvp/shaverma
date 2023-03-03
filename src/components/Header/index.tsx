@@ -1,5 +1,4 @@
-import type { RootState } from "../../store";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../store/hooks";
 
 import { Link } from "react-router-dom";
 
@@ -12,9 +11,7 @@ import styles from "./header.module.scss";
 import logo from "../../assets/img/logo.png";
 
 const Header: React.FC = () => {
-  const { totalPrice, totalCount } = useSelector(
-    (state: RootState) => state.cart
-  );
+  const { totalPrice, totalCount } = useAppSelector((state) => state.cart);
 
   return (
     <header className={styles.header}>

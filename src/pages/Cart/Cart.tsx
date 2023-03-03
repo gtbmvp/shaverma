@@ -1,23 +1,21 @@
-import type { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { clearCart } from "../../store/slices/cartSlice";
-import { useSelector, useDispatch } from "react-redux";
 
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import Button from "@mui/material/Button";
 
 import CartItem from "../../components/CartItem";
 
-import emptycart from "../../assets/img/emptycart.png";
+import emptycart from "../../assets/img/emptycart.webp";
 
 import styles from "./cart.module.scss";
 
 const Cart: React.FC = () => {
-  const { items, totalCount, totalPrice } = useSelector(
-    (state: RootState) => state.cart
+  const { items, totalCount, totalPrice } = useAppSelector(
+    (state) => state.cart
   );
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <main>

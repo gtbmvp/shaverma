@@ -1,16 +1,15 @@
-import type { RootState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { changeFilter } from "../../store/slices/filterSlice";
 
-import styles from "./categories.module.scss";
-
 import { CategoriesType } from "../../types";
+
+import styles from "./categories.module.scss";
 
 const categories = ["все", "курица", "говядина", "баранина", "фалафель"];
 
 const Filter: React.FC = () => {
-  const filter = useSelector((state: RootState) => state.filter.filterBy);
-  const dispatch = useDispatch();
+  const filter = useAppSelector((state) => state.filter.filterBy);
+  const dispatch = useAppDispatch();
 
   return (
     <ul className={styles.categories}>

@@ -1,5 +1,5 @@
 import { add, remove } from "../../store/slices/cartSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store/hooks";
 
 import { orange } from "@mui/material/colors";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
@@ -10,7 +10,7 @@ import { ICartShaverma } from "../../types";
 import styles from "./cartItem.module.scss";
 
 const CartItem: React.FC<ICartShaverma> = (item) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { id, photo, title, price, count } = item;
 

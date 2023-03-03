@@ -1,5 +1,4 @@
-import type { RootState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { add, remove } from "../../store/slices/cartSlice";
 
 import { orange, blueGrey } from "@mui/material/colors";
@@ -27,8 +26,8 @@ const Shaverma: React.FC<IShaverma> = (item) => {
     photo,
   } = item;
 
-  const cart = useSelector((state: RootState) => state.cart.items);
-  const dispatch = useDispatch();
+  const cart = useAppSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
 
   const handleAddClick = () => {
     const newItem = { id, title, price, photo, count: 1 };

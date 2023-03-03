@@ -1,5 +1,4 @@
-import type { RootState } from "../../store";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { changeSorting } from "../../store/slices/filterSlice";
 
 import { useState, useEffect, useRef } from "react";
@@ -17,8 +16,8 @@ const sortings = {
 const Sort: React.FC = () => {
   const [open, setOpen] = useState(false);
 
-  const sorting = useSelector((state: RootState) => state.filter.sorting);
-  const dispatch = useDispatch();
+  const sorting = useAppSelector((state) => state.filter.sorting);
+  const dispatch = useAppDispatch();
 
   const popup = useRef<HTMLDivElement>(null);
 
