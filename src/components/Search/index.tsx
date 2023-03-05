@@ -1,7 +1,6 @@
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setSearch } from "../../store/slices/filterSlice";
-
-import { useState } from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
@@ -12,6 +11,12 @@ const Search: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const search = useAppSelector((state) => state.filter.search);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (search !== "") {
+      setIsOpen(true);
+    }
+  }, [search]);
 
   const handleBlur = () => {
     if (search === "") {
