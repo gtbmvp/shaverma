@@ -20,10 +20,20 @@ export interface ICartShaverma {
   count: number;
 }
 
-export type SortType = "rating" | "price" | "energy";
-export type CategoriesType =
-  | "все"
-  | "курица"
-  | "говядина"
-  | "баранина"
-  | "фалафель";
+const sorts = ["rating", "price", "energy"] as const;
+export type SortType = typeof sorts[number];
+export const isValidSort = (sort: any): sort is SortType => {
+  return sorts.includes(sort);
+};
+
+const categories = [
+  "все",
+  "курица",
+  "говядина",
+  "баранина",
+  "фалафель",
+] as const;
+export type CategoriesType = typeof categories[number];
+export const isValidCategory = (cat: any): cat is CategoriesType => {
+  return categories.includes(cat);
+};
