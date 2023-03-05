@@ -24,15 +24,14 @@ const Search: React.FC = () => {
     }
   };
 
-  const handleIconClick = () => {
-    setIsOpen((prev) => !prev);
-  };
-
   return (
     <div
       className={isOpen ? `${styles.box} ${styles["box--active"]}` : styles.box}
     >
-      <SearchIcon className={styles.icon} onClick={handleIconClick} />
+      <SearchIcon
+        className={styles.icon}
+        onClick={() => setIsOpen((prev) => !prev)}
+      />
 
       {isOpen && (
         <TextField

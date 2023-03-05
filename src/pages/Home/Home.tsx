@@ -52,6 +52,7 @@ const Home: React.FC = () => {
   }, [filterBy, sorting, search, setSearchParams]);
 
   if (error) {
+    console.log(error);
     return (
       <main>
         <div className={styles.error}>

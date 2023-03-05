@@ -25,7 +25,7 @@ const Sort: React.FC = () => {
     const handler: EventListener = (event) => {
       if (!(event.target instanceof Element)) return;
 
-      if (popup.current && !popup.current.contains(event.target)) {
+      if (!popup.current?.contains(event.target)) {
         setOpen(false);
       }
     };
