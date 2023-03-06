@@ -22,10 +22,11 @@ import styles from "./home.module.scss";
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { status, error } = useAppSelector((state) => state.product);
   const { filterBy, sorting, search } = useAppSelector((state) => state.filter);
   const items = useAppSelector(selectBy(filterBy, sorting, search));
-  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     dispatch(fetchAllProducts());

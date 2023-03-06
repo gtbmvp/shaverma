@@ -38,7 +38,8 @@ const Cart: React.FC = () => {
             </div>
             <ul className={styles.list}>
               {items.map(
-                (item) => item.count > 0 && <CartItem key={item.id} {...item} />
+                (item) =>
+                  item?.count > 0 && <CartItem key={item.id} {...item} />
               )}
             </ul>
             <div className={styles.bottom}>

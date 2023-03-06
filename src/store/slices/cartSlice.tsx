@@ -21,7 +21,7 @@ export const cartSlice = createSlice({
   reducers: {
     add: (state, action: PayloadAction<ICartShaverma>) => {
       const { id } = action.payload;
-      if (state.items[id] === undefined) {
+      if (state.items[id] === null || state.items[id] === undefined) {
         state.items[id] = { ...action.payload, count: 1 };
         state.totalPrice += action.payload.price;
         state.totalCount++;
