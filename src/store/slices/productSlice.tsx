@@ -8,15 +8,22 @@ import {
 import { IShaverma, CategoriesType, SortType } from "../../types";
 import { RootState } from "..";
 
-interface ICartState {
+enum Status {
+  IDLE = "idle",
+  LOADING = "loading",
+  SUCCESS = "success",
+  FAIL = "fail",
+}
+
+interface IProductState {
   items: Array<IShaverma>;
-  status: "idle" | "loading" | "success" | "fail";
+  status: `${Status}`;
   error: string | null;
 }
 
-const initialState: ICartState = {
+const initialState: IProductState = {
   items: [],
-  status: "idle",
+  status: Status.IDLE,
   error: null,
 };
 
@@ -47,15 +54,15 @@ export const productSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.pending, (state) => {
-        state.status = "loading";
+        state.status = Status.LOADING;
         state.error = null;
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        state.status = "success";
+        state.status = Status.SUCCESS;
         state.items = action.payload;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
-        state.status = "fail";
+        state.status = Status.FAIL;
         state.error = action.payload as string;
       });
   },
