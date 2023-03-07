@@ -10,11 +10,8 @@ import {
 } from "../../store/slices/filterSlice";
 import { fetchAllProducts, selectBy } from "../../store/slices/productSlice";
 
-import Filter from "../../components/Filter";
-import Shaverma from "../../components/Shaverma";
+import { Filter, Shaverma, Sort, Search } from "../../components";
 import ShavermaSkeleton from "../../components/Shaverma/ShavermaSkeleton";
-import Sort from "../../components/Sort";
-import Search from "../../components/Search";
 
 import { isValidCategory, isValidSort } from "../../types";
 

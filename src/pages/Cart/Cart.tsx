@@ -5,7 +5,7 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
-import CartItem from "../../components/CartItem";
+import { CartItem } from "../../components/";
 
 import emptycart from "../../assets/img/emptycart.webp";
 
