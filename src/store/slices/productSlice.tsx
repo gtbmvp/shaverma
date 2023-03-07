@@ -17,7 +17,7 @@ enum Status {
 
 interface IProductState {
   items: Array<IShaverma>;
-  status: `${Status}`;
+  status: Status;
   error: string | null;
 }
 
