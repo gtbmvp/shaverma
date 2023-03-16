@@ -66,7 +66,11 @@ const Shaverma: React.FC<IShaverma> = (item) => {
             <span>Белки/жиры/углеводы:</span> {protein}/{fats}/{carbohydrates}
           </li>
         </ul>
-        <img className={styles.image} src={`img/${photo}`} alt="Shaverma" />
+        <img
+          className={styles.image}
+          src={require(`../../assets/product_photos/${photo}`)}
+          alt="Shaverma"
+        />
       </div>
       <h4 className={styles.title}>{title}</h4>
 
