@@ -1,5 +1,4 @@
 .cart {
-  padding: 40px 0 60px;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -34,11 +33,36 @@
   display: flex;
   flex-direction: column;
   padding: 40px;
+  gap: 20px;
+
+  @media (max-width: 767px) {
+    padding: 40px 0;
+  }
 }
 
 .bottom {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      width: 50%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 470px) {
+    a {
+      width: 100%;
+    }
+  }
 
   span {
     font-size: 36px;

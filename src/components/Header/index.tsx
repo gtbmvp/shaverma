@@ -31,19 +31,21 @@ const Header: React.FC = () => {
         </Link>
 
         {totalCount <= 0 ? (
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: orange[900],
-              borderRadius: 25,
-              ":hover": {
-                bgcolor: orange[800],
-              },
-            }}
-            disabled
-          >
-            <ShoppingCartIcon fontSize="small" />
-          </Button>
+          <div className={styles.cart}>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: orange[900],
+                borderRadius: 25,
+                ":hover": {
+                  bgcolor: orange[800],
+                },
+              }}
+              disabled
+            >
+              <ShoppingCartIcon fontSize="small" />
+            </Button>
+          </div>
         ) : (
           <Link to="/cart" className={styles.cart}>
             <Button

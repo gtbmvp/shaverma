@@ -3,6 +3,12 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  margin-bottom: 30px;
+
+  @media (max-width: 360px) {
+    padding: 20px 0;
+    margin-bottom: 10px;
+  }
 }
 
 .container {
@@ -10,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 
   @media (max-width: 710px) {
     flex-direction: column;
@@ -38,6 +44,7 @@
 }
 
 .cart {
+  height: 45px;
   flex-shrink: 0;
 
   span {

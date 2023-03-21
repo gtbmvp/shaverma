@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { clearCart } from "../../store/slices/cartSlice";
 
-import CreditCardIcon from "@mui/icons-material/CreditCard";
+import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
@@ -47,13 +48,15 @@ const Cart: React.FC = () => {
                 Всего шаверм: <span>{totalCount}</span> шт. на сумму:{" "}
                 <span>{totalPrice}</span> рублей
               </p>
-              <Button
-                variant="contained"
-                color="success"
-                startIcon={<CreditCardIcon />}
-              >
-                Оплатить {totalPrice} ₽
-              </Button>
+              <Link to="/order">
+                <Button
+                  variant="contained"
+                  color="success"
+                  startIcon={<FormatAlignLeftIcon />}
+                >
+                  Оформить
+                </Button>
+              </Link>
             </div>
           </div>
         )}

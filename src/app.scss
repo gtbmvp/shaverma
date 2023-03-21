@@ -8,12 +8,13 @@ body {
   width: calc(100vw - 100px);
   max-width: 1400px;
   height: 100%;
-  background-color: #fff;
   margin: 50px auto;
+  padding-bottom: 50px;
+  background-color: #fff;
   border-radius: 10px;
 
-  @media (max-width: 480px) {
-    width: calc(100vw - 30px);
+  @media (max-width: 540px) {
+    width: calc(100vw - 40px);
   }
 }
 

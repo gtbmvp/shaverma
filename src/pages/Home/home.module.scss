@@ -3,6 +3,10 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   justify-items: center;
   gap: 10px;
+
+  @media (max-width: 330px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .top {
@@ -12,6 +16,10 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 }
 
 .error {
