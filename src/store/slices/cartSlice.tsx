@@ -1,12 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { ICartShaverma } from "../../types";
+import { RootState } from "..";
 
 interface ICartState {
   items: Array<ICartShaverma>;
   totalPrice: number;
   totalCount: number;
+}
+
+interface IOrderProduct {
+  id: number;
+  count: number;
 }
 
 const initialState: ICartState = {
@@ -47,6 +53,15 @@ export const cartSlice = createSlice({
     },
   },
 });
+const selectItems = (state: RootState) => state.cart.items;
+
+export const selectCountAndIds = createSelector(selectItems, (items) =>
+  items.reduce<IOrderProduct[]>((acc, item) => {
+    if (!item) return acc;
+    acc.push({ id: item.id, count: item.count });
+    return acc;
+  }, [])
+);
 
 export const { add, remove, clearCart } = cartSlice.actions;
 

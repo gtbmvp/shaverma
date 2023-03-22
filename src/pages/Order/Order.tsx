@@ -1,5 +1,7 @@
-import { useAppSelector } from "../../store/hooks";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { clearCart, selectCountAndIds } from "../../store/slices/cartSlice";
 
 import { TextField } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
@@ -22,8 +24,17 @@ const Order: React.FC = () => {
     mode: "onBlur",
   });
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
+  const items = useAppSelector(selectCountAndIds);
 
-  const onSubmit: SubmitHandler<IOrderFields> = (data) => console.log(data);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<IOrderFields> = ({ phone, name, adress }) => {
+    const order = { phone, name, adress, order: [...items] };
+    console.log(order);
+    dispatch(clearCart());
+    navigate("/success");
+  };
 
   return (
     <main>

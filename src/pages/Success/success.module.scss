@@ -1,0 +1,16 @@
+.field {
+  text-align: center;
+  padding: 20px;
+  font-size: 22px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.title {
+  font-weight: 500;
+  span {
+    font-weight: 800;
+  }
+}
