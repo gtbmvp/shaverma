@@ -68,7 +68,7 @@ const Shaverma: React.FC<IShaverma> = (item) => {
         </ul>
         <img
           className={styles.image}
-          src={require(`../../assets/product_photos/${photo}`)}
+          src={require(`../../assets/img/product_photos/${photo}`)}
           alt="Shaverma"
         />
       </div>
