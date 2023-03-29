@@ -16,19 +16,30 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={`${styles.container} container`}>
-        <Link to="/" className={styles.logo}>
-          <img
-            className={styles.img}
-            width="64"
-            height="64"
-            src={logo}
-            alt="Shaverma logo"
-          />
-          <div>
-            <h1 className={styles.title}>S-tier food</h1>
-            <p className={styles.text}>лучшая шаверма на Северо-Западе</p>
-          </div>
-        </Link>
+        <nav className={styles.menu}>
+          <Link to="/" className={styles.logo}>
+            <img
+              className={styles.img}
+              width="64"
+              height="64"
+              src={logo}
+              alt="Shaverma logo"
+            />
+            <div>
+              <h1 className={styles.title}>S-tier food</h1>
+              <p className={styles.text}>лучшая шаверма на Северо-Западе</p>
+            </div>
+          </Link>
+
+          <ul className={styles.menu__list}>
+            <li className={styles.menu__item}>
+              <Link to="/zone">Зона доставки</Link>
+            </li>
+            <li className={styles.menu__item}>
+              <Link to="/feedback">Отзывы</Link>
+            </li>
+          </ul>
+        </nav>
 
         {totalCount <= 0 ? (
           <div className={styles.cart}>

@@ -1,0 +1,35 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .map {
+    height: 50vh;
+  }
+
+  a {
+    align-self: center;
+
+    @media (max-width: 540px) {
+      align-self: stretch;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .marker {
+    width: 36px;
+    height: 36px;
+
+    img {
+      transform: translate(-50%, -50%);
+    }
+  }
+}

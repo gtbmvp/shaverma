@@ -20,5 +20,3 @@ root.render(
     </PersistGate>
   </Provider>
 );
-
-console.log(ymaps3);

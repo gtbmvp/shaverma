@@ -11,7 +11,7 @@ const NotFound: React.FC = () => {
   }, [navigate]);
 
   return (
-    <h1 style={{ textAlign: "center", padding: 50 }}>
+    <h1 style={{ textAlign: "center", padding: 50, fontSize: 22 }}>
       😔 Тут ничего нет, перенаправляем вас...
     </h1>
   );
