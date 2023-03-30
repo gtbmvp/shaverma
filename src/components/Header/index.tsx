@@ -1,6 +1,6 @@
 import { useAppSelector } from "../../store/hooks";
 
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import { orange } from "@mui/material/colors";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -13,6 +13,7 @@ import logo from "../../assets/img/logo.png";
 const Header: React.FC = () => {
   const { totalPrice, totalCount } = useAppSelector((state) => state.cart);
 
+  console.log(styles);
   return (
     <header className={styles.header}>
       <div className={`${styles.container} container`}>
@@ -33,10 +34,20 @@ const Header: React.FC = () => {
 
           <ul className={styles.menu__list}>
             <li className={styles.menu__item}>
-              <Link to="/zone">Зона доставки</Link>
+              <NavLink
+                to="/zone"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Зона доставки
+              </NavLink>
             </li>
             <li className={styles.menu__item}>
-              <Link to="/feedback">Отзывы</Link>
+              <NavLink
+                to="/feedback"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Отзывы
+              </NavLink>
             </li>
           </ul>
         </nav>

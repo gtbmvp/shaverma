@@ -10,9 +10,9 @@ import Button from "@mui/material/Button";
 import styles from "./order.module.scss";
 
 interface IOrderFields {
-  phone: number;
-  name: string;
-  adress: string;
+  phone: number | "";
+  name: string | "";
+  adress: string | "";
 }
 
 const Order: React.FC = () => {
@@ -21,7 +21,7 @@ const Order: React.FC = () => {
     control,
     formState: { errors, isValid },
   } = useForm<IOrderFields>({
-    mode: "onBlur",
+    mode: "onTouched",
   });
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
   const items = useAppSelector(selectCountAndIds);
@@ -43,6 +43,7 @@ const Order: React.FC = () => {
           <Controller
             name="phone"
             control={control}
+            defaultValue=""
             rules={{
               required: "Введите номер телефона",
               pattern: {
@@ -66,6 +67,7 @@ const Order: React.FC = () => {
           <Controller
             name="name"
             control={control}
+            defaultValue=""
             rules={{
               required: "Введите имя не короче 2 символов",
               minLength: {
@@ -89,6 +91,7 @@ const Order: React.FC = () => {
           <Controller
             name="adress"
             control={control}
+            defaultValue=""
             render={({ field }) => (
               <TextField
                 className={styles.input}

@@ -85,11 +85,8 @@
     color: rgba(0, 0, 0, 1);
     transition: color 0.2s ease;
 
-    a {
-      height: 45px;
-    }
-
-    &:hover {
+    &:hover,
+    .active {
       color: #e65100;
     }
   }
