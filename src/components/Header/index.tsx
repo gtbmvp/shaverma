@@ -13,7 +13,6 @@ import logo from "../../assets/img/logo.png";
 const Header: React.FC = () => {
   const { totalPrice, totalCount } = useAppSelector((state) => state.cart);
 
-  console.log(styles);
   return (
     <header className={styles.header}>
       <div className={`${styles.container} container`}>
