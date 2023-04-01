@@ -30,7 +30,12 @@ const Delivery: React.FC = () => {
         YMapDefaultFeaturesLayer,
         YMapMarker,
         YMapFeature,
+        YMapControls,
       } = reactify.module(ymaps3);
+
+      const { YMapZoomControl } = reactify.module(
+        await ymaps3.import("@yandex/ymaps3-controls@0.0.1")
+      );
 
       setMaps(
         <YMap
@@ -42,6 +47,9 @@ const Delivery: React.FC = () => {
         >
           <YMapDefaultSchemeLayer />
           <YMapDefaultFeaturesLayer />
+          <YMapControls position="right">
+            <YMapZoomControl />
+          </YMapControls>
           <YMapMarker coordinates={[30.349839, 59.830981]}>
             <div className={styles.marker}>
               <img src={logo} alt="" />

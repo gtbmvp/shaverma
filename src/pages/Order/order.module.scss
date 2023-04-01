@@ -8,10 +8,7 @@
     width: 100%;
   }
 
-  .input:not(:last-of-type) {
+  .input {
     height: 100px;
-  }
-  .input:last-of-type {
-    margin-bottom: 50px;
   }
 }

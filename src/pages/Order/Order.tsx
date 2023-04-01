@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -6,6 +7,8 @@ import { clearCart, selectCountAndIds } from "../../store/slices/cartSlice";
 import { TextField } from "@mui/material";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import Button from "@mui/material/Button";
+
+import debouncedPromise from "awesome-debounce-promise";
 
 import styles from "./order.module.scss";
 
@@ -16,6 +19,10 @@ interface IOrderFields {
 }
 
 const Order: React.FC = () => {
+  const items = useAppSelector(selectCountAndIds);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -23,11 +30,6 @@ const Order: React.FC = () => {
   } = useForm<IOrderFields>({
     mode: "onTouched",
   });
-  const totalPrice = useAppSelector((state) => state.cart.totalPrice);
-  const items = useAppSelector(selectCountAndIds);
-
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<IOrderFields> = ({ phone, name, adress }) => {
     const order = { phone, name, adress, order: [...items] };
@@ -92,13 +94,30 @@ const Order: React.FC = () => {
             name="adress"
             control={control}
             defaultValue=""
+            rules={{
+              validate: debouncedPromise(async (value) => {
+                if (value === "") return false;
+
+                const { data } = await axios(
+                  `https://geocode-maps.yandex.ru/1.x/?format=json&apikey=59566f07-dd93-4b8e-a0cf-1b6ea1f17d1e&bbox=30.324002,59.817543~30.3775,59.844154&rspn=1&geocode=${value}`
+                );
+
+                if (
+                  data.response.GeoObjectCollection.featureMember.length === 0
+                ) {
+                  return "Уточните по телефону возможность доставки по этому адресу";
+                }
+
+                return true;
+              }, 300),
+            }}
             render={({ field }) => (
               <TextField
                 className={styles.input}
-                id="filled-multiline-static"
+                error={errors.adress && true}
+                id="filled-error-helper-text"
                 label="Адрес"
-                multiline
-                rows={4}
+                helperText={errors.adress?.message}
                 variant="filled"
                 {...field}
               />
@@ -112,7 +131,7 @@ const Order: React.FC = () => {
             color="success"
             startIcon={<CreditCardIcon />}
           >
-            Оплатить {totalPrice} ₽
+            Заказать
           </Button>
         </form>
       </div>
